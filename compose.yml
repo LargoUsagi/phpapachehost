@@ -1,0 +1,29 @@
+version: '2'
+services:
+  {SITE_NAME}DB:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: {DB_ROOT_PW}
+      MYSQL_DATABASE: {DB_DB_NAME}
+      MYSQL_USER: {DB_DB_USER}
+      MYSQL_PASSWORD: {DB_DB_PASS}
+    stdin_open: true
+    volumes:
+    - /opt/docker/{SITE_NAME}/db:/var/lib/mysql
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+  {SITE_NAME}Site:
+    image: largousagi/phpapachehost:latest
+    stdin_open: true
+    volumes:
+    - /opt/docker/{SITE_NAME}/host:/var/www/html
+    tty: true
+    links:
+    - {SITE_NAME}DB:mysql
+    labels:
+      rap.le_email: {SITE_EMAIL}
+      rap.le_host: {SITE_FQDN}
+      client_max_body_size: 50m
+      io.rancher.container.pull_image: always
+      rap.host: {SITE_FQDN}
