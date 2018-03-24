@@ -27,3 +27,18 @@ services:
       client_max_body_size: 50m
       io.rancher.container.pull_image: always
       rap.host: {SITE_FQDN}
+  {SITE_NAME}phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_ABSOLUTE_URI: https://{SITE_FQDN}/
+      PMA_HOST: mysql
+    stdin_open: true
+    tty: true
+    links:
+    - {SITE_NAME}DB:mysql
+    labels:
+      rap.le_email: {SITE_EMAIL}
+      rap.le_host: {SITE_FQDN}
+      client_max_body_size: 50m
+      io.rancher.container.pull_image: always
+      rap.host: {SITE_FQDN}
