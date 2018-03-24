@@ -24,7 +24,7 @@ services:
     labels:
       rap.le_email: ${SITE_EMAIL}
       rap.le_host: www.${SITE_FQDN}
-      client_max_body_size: 50m
+      rap.client_max_body_size: 50m
       io.rancher.container.pull_image: always
       rap.host: www.${SITE_FQDN}
   ${SITE_NAME}phpmyadmin:
@@ -39,6 +39,6 @@ services:
     labels:
       rap.le_email: ${SITE_EMAIL}
       rap.le_host: phpmyadmin.${SITE_FQDN}
-      client_max_body_size: 50m
+      rap.client_max_body_size: 50m
       io.rancher.container.pull_image: always
       rap.host: phpmyadmin.${SITE_FQDN}
