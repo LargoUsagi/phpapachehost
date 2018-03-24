@@ -23,14 +23,14 @@ services:
     - ${SITE_NAME}DB:mysql
     labels:
       rap.le_email: ${SITE_EMAIL}
-      rap.le_host: ${SITE_FQDN}
+      rap.le_host: www.${SITE_FQDN}
       client_max_body_size: 50m
       io.rancher.container.pull_image: always
-      rap.host: ${SITE_FQDN}
+      rap.host: www.${SITE_FQDN}
   ${SITE_NAME}phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
-      PMA_ABSOLUTE_URI: https://${SITE_FQDN}/
+      PMA_ABSOLUTE_URI: https://phpmyadmin.${SITE_FQDN}/
       PMA_HOST: mysql
     stdin_open: true
     tty: true
@@ -38,7 +38,7 @@ services:
     - ${SITE_NAME}DB:mysql
     labels:
       rap.le_email: ${SITE_EMAIL}
-      rap.le_host: ${SITE_FQDN}
+      rap.le_host: phpmyadmin.${SITE_FQDN}
       client_max_body_size: 50m
       io.rancher.container.pull_image: always
-      rap.host: ${SITE_FQDN}
+      rap.host: phpmyadmin.${SITE_FQDN}
