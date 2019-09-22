@@ -5,4 +5,5 @@ RUN docker-php-ext-install -j$(nproc) iconv \
  && docker-php-ext-install -j$(nproc) gd \
  && docker-php-ext-install opcache \
  && docker-php-ext-install mysqli && docker-php-ext-enable mysqli \
+ && docker-php-ext-install redis && docker-php-ext-enable redis
  && apt-get clean
